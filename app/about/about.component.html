@@ -1,0 +1,34 @@
+<ActionBar title="About Us" class="action-bar"></ActionBar>
+<RadSideDrawer #drawerComponent tkToggleNavButton showOverNavigation="true">
+    <ScrollView tkDrawerContent class="sidedrawer-left">
+        <StackLayout horizontalAlign="left">
+            <drawer-content></drawer-content>
+        </StackLayout>
+    </ScrollView>
+    <StackLayout tkMainContent class="page" orientation="vertical">
+        <ScrollView>
+            <GridLayout rows="auto auto *" class="m-5">
+                <StackLayout row="0" class="p-10 border">
+                    <Label class="h2" text="Our History"></Label>
+                    <Label class="body" textWrap="true" text="Started in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong. Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us."></Label>
+                    <Label class="body" textWrap="true" text="The restaurant traces its humble beginnings to The Frying Pan, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan."></Label>
+                </StackLayout>
+                <Label row="1" height="40" class="p-10 m-t-10 h3" text="Corpotate Leadership"></Label>
+                <ListView row="2" height="950" class="list-group" [items]="leaders" *ngIf="leaders">
+                    <ng-template let-leader="item">
+                        <StackLayout class="list-group-item" colums="50, *" orientation="horizontal">
+                            <Image row=0 col=0 [src]="BaseURL + leader.image" height=50 width=50 class="img-circle"></Image>
+                            <StackLayout row=0 col=1 class="m-l-5">
+                                <Label class="list-group-item-heading" [text]="leader.name"></Label>
+                                <Label class="list-group-item-text" [text]="leader.designation"></Label>
+                                <Label class="list-group-item-text" [text]="leader.description" textWrap="true"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </ng-template>
+                </ListView>
+            </GridLayout>
+        </ScrollView>
+        <ActivityIndicator busy="true" width="50" height="50" class="activity-indicator" *ngIf="!(leadersErr || leaders)"></ActivityIndicator>
+        <Label [text]="'Error: ' + leadersErr" *ngIf="leadersErr"></Label> 
+    </StackLayout>
+</RadSideDrawer>
