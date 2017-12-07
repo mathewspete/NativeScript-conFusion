@@ -42,4 +42,5 @@ export class HomeComponent extends DrawerPage implements OnInit{
             .subscribe(leader => this.leader = leader,
                 errmess => this.leaderErrMess = <any> errmess);
     }
+
 }
